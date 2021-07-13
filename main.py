@@ -32,7 +32,11 @@ if __name__ == '__main__':
     first_team_name = df.columns[1]
     second_team_name = df.columns[2]
     for index, row in df.iterrows():
-        betting.append(Bet(row[first_team_name], row[second_team_name], row['winner'], row['name']))
+        if row[first_team_name] != row[second_team_name]:
+            winner = first_team_name if row[first_team_name] > row[second_team_name] else second_team_name
+        else:
+            winner = row['winner']
+        betting.append(Bet(row[first_team_name], row[second_team_name], winner, row['name']))
     print("GAME IS OVER!")
     time.sleep(2)
     first_score = int(input("how many " + first_team_name + " scored?\n"))
