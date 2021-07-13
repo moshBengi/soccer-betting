@@ -1,6 +1,6 @@
 import pandas as pd
 import time
-FILE_NAME = "betting.xlsx"
+FILE_NAME = "betting.csv"
 
 
 class Bet:  # class for the bet of every person
@@ -28,7 +28,7 @@ class Bet:  # class for the bet of every person
 
 if __name__ == '__main__':
     betting = []
-    df = pd.read_excel(FILE_NAME)
+    df = pd.read_csv(FILE_NAME)
     first_team_name = df.columns[1]
     second_team_name = df.columns[2]
     for index, row in df.iterrows():
