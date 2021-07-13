@@ -3,7 +3,8 @@ import time
 FILE_NAME = "betting.xlsx"
 
 
-class Bet:
+class Bet:  # class for the bet of every person
+
     def __init__(self, first_team, second_team, winner, name):
         self.first_team = first_team
         self.second_team = second_team
@@ -15,6 +16,7 @@ class Bet:
     def __gt__(self, other):
         return other.points < self.points
 
+    # the calculating algorithm, can be changed
     def calculate_grade(self, actual):
         diff_f = abs(self.first_team - actual.first_team) * 5
         diff_s = abs(self.second_team - actual.second_team) * 5
@@ -24,7 +26,6 @@ class Bet:
         self.points = points
 
 
-# italy first
 if __name__ == '__main__':
     betting = []
     df = pd.read_excel(FILE_NAME)
