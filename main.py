@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import time
 FILE_NAME = "betting.csv"
@@ -50,14 +51,19 @@ if __name__ == '__main__':
 
     print("the grades are:")
     time.sleep(2)
-
+    max_points = -np.Inf
     for b in betting:
         b.calculate_grade(actual)
+        if b.points > max_points:
+            max_points = b.points
 
     betting.sort()
+    counter = 0
     for b in betting:
         print(b.name + " got " + str(b.points) + " points")
-        time.sleep(2)
-
-    print("nice job " + betting[-1].name + " you won")
+        if b.points == max_points:
+            counter += 1
+        time.sleep(1.5)
+    winners = [betting[-i - 1].name for i in range(counter)]
+    print("nice job " + ", ".join(winners) + " you won")
     time.sleep(2)
